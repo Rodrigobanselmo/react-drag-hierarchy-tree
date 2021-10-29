@@ -1,5 +1,5 @@
 {
-  "version": "4.2.2-2",
+  "version": "4.2.2-3",
   "typings": "dist/index.d.ts",
   "description": "An react project for customized and optimize drag and drop hierarchy tree.",
   "keywords": [
