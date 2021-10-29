@@ -1,12 +1,22 @@
 import 'react-app-polyfill/ie11';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Thing } from '../.';
+
+import OrgTreeComponent, { useTree } from '../src';
+import { data } from './utils/data';
 
 const App = () => {
+  const { treeRef } = useTree();
+
+  const onClick = () => {
+    treeRef.current?.onExpandNodes();
+  };
+
   return (
     <div>
-      <Thing />
+      <button onClick={onClick}>close/open</button>
+      <OrgTreeComponent data={data} ref={treeRef} horizontal />
     </div>
   );
 };
