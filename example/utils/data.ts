@@ -1,60 +1,60 @@
 export const data = {
-  id: 10,
-  label: "Presidente",
+  id: 1,
+  label: 'President',
   children: [
     {
-      id: 1,
-      label: "Administrativo",
+      id: 2,
+      label: 'Administrative',
       children: [
         {
-          id: 4,
-          label: "Diretor",
+          id: 3,
+          label: 'Director',
           children: [],
         },
         {
-          id: 5,
-          label: "Diretor",
+          id: 4,
+          label: 'Manager',
           children: [
             {
-              id: 44,
-              label: "Cargo",
+              id: 5,
+              label: 'Office 1',
               children: [],
             },
           ],
         },
         {
           id: 6,
-          label: "Financeiro",
+          label: 'Financial',
           children: [
             {
-              id: 12,
-              label: "Contador",
+              id: 7,
+              label: 'Accountant',
               children: [
                 {
-                  id: 42,
-                  label: "Cargo 1",
+                  id: 8,
+                  label: 'Office 2',
                   children: [],
                 },
                 {
-                  id: 52,
-                  label: "Cargo 2",
+                  id: 9,
+                  label: 'Office 3',
                   children: [],
                 },
                 {
-                  id: 62,
-                  label: "Cargo 3",
+                  id: 10,
+                  label: 'Office 4',
                   children: [],
                 },
               ],
             },
             {
-              id: 23,
-              label: "Cargo 4",
+              id: 11,
+              label: 'Office 5',
               children: [],
             },
             {
-              id: 33,
-              label: "Cargo 5",
+              id: 12,
+              label: 'Office 6',
               children: [],
             },
           ],
@@ -62,13 +62,13 @@ export const data = {
       ],
     },
     {
-      id: 2,
-      label: "Diretor 1",
+      id: 13,
+      label: 'Manager 2',
       children: [],
     },
     {
-      id: 3,
-      label: "Diretor 2",
+      id: 14,
+      label: 'Manager 3',
       children: [],
     },
   ],
