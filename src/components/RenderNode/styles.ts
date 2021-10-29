@@ -15,7 +15,7 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
     transition: all 0.35s;
   }
 
-  /* padding-top: 20px; */
+  padding-top: 20px;
   display: table-cell;
   vertical-align: top;
 
