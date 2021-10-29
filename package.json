@@ -1,8 +1,27 @@
 {
   "version": "0.1.0",
-  "license": "MIT",
-  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "description": "An react project for customized and optimize drag and drop hierarchy tree.",
+  "keywords": [
+    "react",
+    "dnd",
+    "tree",
+    "drag",
+    "hierarchy",
+    "drop"
+  ],
+  "homepage": "https://github.com/Rodrigobanselmo/react-drag-tree",
+  "bugs": {
+    "url": "https://github.com/Rodrigobanselmo/react-drag-tree/issues",
+    "email": "rodrigoanselmo.dev@example.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rodrigobanselmo/react-drag-tree.git"
+  },
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
   "files": [
     "dist",
     "src"
@@ -35,7 +54,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-drag-tree",
+  "name": "react-drag-hierarchy-tree",
   "author": "Rodrigo Anselmo",
   "module": "dist/react-drag-tree.esm.js",
   "size-limit": [
