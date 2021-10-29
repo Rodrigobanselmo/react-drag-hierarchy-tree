@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import { ITreeOptions } from "../interfaces";
+import { ITreeOptions } from '../interfaces';
 
 export const LabelArea = styled.div<ITreeOptions>`
   position: relative;
@@ -23,7 +23,12 @@ interface ILabelCard {
 export const LabelCard = styled.div<ILabelCard>`
   background-color: white;
   cursor: grab;
-  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  min-width: 100px;
+  height: 45px;
   z-index: 100000;
   text-align: center;
   color: black;

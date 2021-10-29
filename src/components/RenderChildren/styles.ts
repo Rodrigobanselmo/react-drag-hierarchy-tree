@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import { ITreeOptions } from "../interfaces";
+import { ITreeOptions } from '../interfaces';
 
 export const ChildrenComponent = styled.div<ITreeOptions>`
   position: relative;
@@ -19,7 +19,7 @@ export const ChildrenComponent = styled.div<ITreeOptions>`
   display: table;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 50%;
@@ -29,7 +29,7 @@ export const ChildrenComponent = styled.div<ITreeOptions>`
   }
 
   &:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
   }

@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import { ITreeOptions } from "../interfaces";
+import { ITreeOptions } from '../interfaces';
 
 export const OrgTreeNode = styled.div<ITreeOptions>`
   position: relative;
@@ -15,7 +15,7 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
     transition: all 0.35s;
   }
 
-  padding-top: 20px;
+  /* padding-top: 20px; */
   display: table-cell;
   vertical-align: top;
 
@@ -27,7 +27,7 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
 
   &:before,
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
