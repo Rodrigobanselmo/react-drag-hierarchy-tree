@@ -28,13 +28,13 @@ const App = () => {
         //     {isCollapsed ? 'expand' : 'colapse'}
         //   </button>
         // )}
-        renderCard={({ isDragging, label, labelId, data, isPreviewCard }) => (
-          <div style={{ backgroundColor: 'green' }}>
-            <span id={labelId}>{label}</span>
-            {!isPreviewCard && <p>{data.id}</p>}
-            <button>click</button>
-          </div>
-        )}
+        // renderCard={({ isDragging, label, labelId, data, isPreviewCard }) => (
+        //   <div style={{ backgroundColor: 'green' }}>
+        //     <span id={labelId}>{label}</span>
+        //     {!isPreviewCard && <p>{data.id}</p>}
+        //     <button>click</button>
+        //   </div>
+        // )}
       />
       <OrgTreeComponent
         renderButton={({ isCollapsed, onClick }) => (

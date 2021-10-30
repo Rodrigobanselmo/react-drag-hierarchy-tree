@@ -35,9 +35,6 @@ export interface IOrgTreeProps {
   horizontal?: boolean;
   collapsable?: boolean;
   expandAll?: boolean;
-  renderContent?: (...data: any) => any;
-  labelWidth?: number;
-  labelClassName?: string;
   strokeColor?: string;
   buttonBackgroundColor?: string;
   buttonBorderColor?: string;
@@ -156,4 +153,5 @@ export interface ITreeRefProps {
   addChildrenById: IAddChildrenById;
   nestedObjectToArray: (data: INestedObject) => IParsedArray[];
   arrayToNestedObject: (data: IParsedArray[]) => INestedObject;
+  data: INestedObject;
 }

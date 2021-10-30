@@ -1,5 +1,5 @@
 {
-  "version": "4.2.2-3",
+  "version": "0.2.0",
   "typings": "dist/index.d.ts",
   "description": "An react project for customized and optimize drag and drop hierarchy tree.",
   "keywords": [
@@ -54,7 +54,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-drag-tree",
+  "name": "react-drag-hierarchy-tree",
   "author": "Rodrigo Anselmo",
   "module": "dist/react-drag-tree.esm.js",
   "size-limit": [

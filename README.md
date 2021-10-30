@@ -1,181 +1,120 @@
-# TSDX React w/ Storybook User Guide
+# React Drag Hierarchy Tree
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+![NPM version](https://img.shields.io/npm/v/react-sortable-tree.svg?style=flat)
+![NPM license](https://img.shields.io/npm/l/react-sortable-tree.svg?style=flat)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+> A React component for Drag-and-drop hierarchy tree data.
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+<div align="center">
 
-## Commands
+</div>
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+## Table of Contents
 
-The recommended workflow is to run TSDX in one terminal:
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Props](#props)
+- [Data Helpers](#data-helper-functions)
 
-```bash
-npm start # or yarn start
+## Getting started
+
+Install `react-drag-hierarchy-tree` using npm.
+
+```sh
+# NPM
+npm install react-drag-hierarchy-tree --save
+# YARN
+yarn add react-drag-hierarchy-tree
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+## Usage
 
-Then run either Storybook or the example playground:
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-### Storybook
+import OrgTreeComponent, { useTree } from 'react-drag-hierarchy-tree';
 
-Run inside another terminal:
+const data = {
+  id: 1,
+  label: 'President',
+  children: [
+    {
+      id: 2,
+      label: 'Administrative',
+      children: [
+        {
+          id: 3,
+          label: 'Director',
+          children: [],
+        },
+      ],
+    },
+    {
+      id: 2,
+      label: 'Administrative',
+      children: [
+        {
+          id: 3,
+          label: 'Director',
+          children: [],
+        },
+      ],
+    },
+  ],
+};
 
-```bash
-yarn storybook
+const App = () => {
+  const { treeRef } = useTree();
+
+  const onClick = () => {
+    treeRef.current?.onExpandNodes();
+  };
+
+  return (
+    <div>
+      <button onClick={onClick}>close/open</button>
+      <OrgTreeComponent data={data} ref={treeRef} horizontal />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-This loads the stories from `./stories`.
+## Props
 
-> NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
+| Prop                    |   Type   | <div style="width: 400px;">Description</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| :---------------------- | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+| data<br/>_(required)_   | object[] | Tree data with the following keys: <div>`id` is the primary and unique key.</div><div>`label` is the primary label for the node.</div><div>`expand` shows children of the node if true, or hides them if false. Defaults to false.</div><div>`style` edit styles for the card container for each node.</div><div>`children` is an array of child nodes belonging to the node.</div><div>**Example**: `[{id:'uui1', label: 'main'}, { id:'uui1', label: 'main' , expand: true, children: [] }]` <br/> You can also add any key you what, thats is useful for the prop renderCard below, where tou can use to personalize your card component |
+| ref<br/>_(recommended)_ |   ref    | Is the ref ussed to get all methods related to the component, you should use the treeRef exported form the useTree hook.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| horizontal              | boolean  | Set if tree should be horizontal or vertical (default: <div>`false`</div>)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| renderCard              |   func   | Ussed to replace the card component. It returns from the function <div>`({ isDragging: bool, label: string, item: {id:string, label:'string'}, isPreviewCard }) => JSX.Element`</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| renderButton            |   func   | Ussed to replace the button collapse component. It returns from the function. <div>`({ onClick: (event: MouseEvent<any>) => void, isCollapsed: boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | undefined }): JSX.ELlement`</div> |
+| collapsable             |   bool   | If childrens should collapse or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| expandAll               |   bool   | If the childrens should start expanded.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| strokeColor             |  color   | Color of line / stroke                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| strokeWidth             |  string  | Line width. <div>` 1px 2px 3px 4px 5px`</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| cardStyle               |  object  | Card inline styles CSSProperties`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| buttonBackgroundColor   |  color   | Collapse button color.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-### Example
+## UseTree Hook
 
-Then run the example inside another:
+This hooks returns a ref that can access many data and helpers by ussing **`treeRef.current`**.
 
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
+- **`data`**: Returns the actual hierarchy data.
+- **`onExpandNodes`**: Expands or collapse all node.
+- **`addChildrenById`**: Add a children node by id.
+- **`removeById`**: Remove a node by id.
+- **`editById`**: edit a node by id.
+- **`findById`**: Find and return node by id.
+- **`findParentByChildId`**: Return parent by child id.
+- **`nestedObjectToArray`**: Transform the nested object to an array.
+- **`arrayToNestedObject`**: Transform back the array to the nested object.
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
+Pull requests are welcome!
 
-To do a one-off build, use `npm run build` or `yarn build`.
+## License
 
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle analysis
-
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-/stories
-  Thing.stories.tsx # EDIT THIS
-/.storybook
-  main.js
-  preview.js
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [size-limit](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
-```
-
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
-
-## Module Formats
-
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Deploying the Example Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
-```
-
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
-
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+MIT
