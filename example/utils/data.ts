@@ -1,7 +1,6 @@
 export const data = {
   id: 1,
   label: 'President',
-  tot: 'President',
   children: [
     {
       id: 2,
