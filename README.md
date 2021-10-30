@@ -17,6 +17,13 @@
 - [Props](#props)
 - [Data Helpers](#data-helper-functions)
 
+<img width="909" alt="Captura de Tela 2021-10-30 às 02 20 01" src="https://user-images.githubusercontent.com/69397304/139521330-9e7eae65-5988-46a3-80c4-04a3a6c7353e.png">
+
+
+https://user-images.githubusercontent.com/69397304/139521514-2214b3f8-60b5-4426-a4d1-f8006175afe4.mov
+
+
+
 ## Getting started
 
 Install `react-drag-hierarchy-tree` using npm.
