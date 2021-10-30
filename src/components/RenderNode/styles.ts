@@ -117,5 +117,8 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
     .org-tree-node-label-inner {
       background-color: #aaaaaa33;
     }
+    .org-tree-node-label-inner-personal {
+      opacity: 0.5;
+    }
   }
 `;

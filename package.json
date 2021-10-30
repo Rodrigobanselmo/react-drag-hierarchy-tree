@@ -54,7 +54,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-drag-hierarchy-tree",
+  "name": "react-drag-tree",
   "author": "Rodrigo Anselmo",
   "module": "dist/react-drag-tree.esm.js",
   "size-limit": [

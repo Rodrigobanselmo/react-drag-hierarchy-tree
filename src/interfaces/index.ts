@@ -22,6 +22,14 @@ interface IRenderButton {
   isCollapsed: boolean | undefined;
 }
 
+interface IRenderCard {
+  isDragging: boolean;
+  label: string;
+  labelId: string;
+  data: INestedObject;
+  isPreviewCard: boolean;
+}
+
 export interface IOrgTreeProps {
   data: INestedObject;
   horizontal?: boolean;
@@ -36,7 +44,7 @@ export interface IOrgTreeProps {
   strokeWidth?: '1px' | '2px' | '3px' | '4px' | '5px';
   onClick?: (...data: any) => any;
   renderButton?: ({ onClick, isCollapsed }: IRenderButton) => JSX.Element;
-  renderCard?: ({ onClick, isCollapsed }: IRenderButton) => JSX.Element;
+  renderCard?: ({ isDragging, label, data, isPreviewCard }: IRenderCard) => any;
   cardStyle?: CSSProperties;
 }
 

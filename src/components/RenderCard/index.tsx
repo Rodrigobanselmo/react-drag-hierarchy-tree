@@ -7,14 +7,19 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { INestedObject } from '../../interfaces';
 import { IRenderCard } from '../interfaces';
 import { RenderBtn } from '../RenderBtn';
-import { CardArea, RenderLabel, StyledLabel } from './styles';
+import {
+  CardArea,
+  RenderLabel,
+  StyledLabel,
+  RenderCarPersonal,
+} from './styles';
 
 export const RenderCard = ({
   data,
   setExpand,
   expand,
   mock,
-  prop,
+  prop: { renderCard, ...prop },
 }: IRenderCard) => {
   const {
     setHierarchy,
@@ -177,11 +182,9 @@ export const RenderCard = ({
     []
   );
 
-  const canDrop = true;
-
   useEffect(() => {
-    if (isOver && canDrop) onDebounce(data.id);
-    else if (canDrop) onDragLeave();
+    if (isOver) onDebounce(data.id);
+    else onDragLeave();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOver]);
 
@@ -196,24 +199,43 @@ export const RenderCard = ({
         typeof prop.onClick === 'function' && prop.onClick(e, data)
       }
     >
-      <RenderLabel
-        key={`label_inner_${data.id}`}
-        ref={drag}
-        isDragging={isDragging}
-        cantDrop={!canDrop}
-        className={clx.join(' ')}
-        style={{ ...prop.cardStyle, ...data.style }}
-      >
-        <StyledLabel id={`label_text_${data.id}`}>{label}</StyledLabel>
-        {prop.collapsable && !isLastNode(data, prop) && (
-          <RenderBtn
-            setExpand={setExpand}
-            expand={expand}
-            data={data}
-            prop={prop}
-          />
-        )}
-      </RenderLabel>
+      {renderCard ? (
+        <RenderCarPersonal key={`label_inner_${data.id}`} ref={drag}>
+          {renderCard({
+            isDragging,
+            label,
+            labelId: `label_text_${data.id}`,
+            data,
+            isPreviewCard: !!mock,
+          })}
+          {prop.collapsable && !isLastNode(data, prop) && (
+            <RenderBtn
+              setExpand={setExpand}
+              expand={expand}
+              data={data}
+              prop={prop}
+            />
+          )}
+        </RenderCarPersonal>
+      ) : (
+        <RenderLabel
+          key={`label_inner_${data.id}`}
+          ref={drag}
+          isDragging={isDragging}
+          className={clx.join(' ')}
+          style={{ ...prop.cardStyle, ...data.style }}
+        >
+          <StyledLabel id={`label_text_${data.id}`}>{label}</StyledLabel>
+          {prop.collapsable && !isLastNode(data, prop) && (
+            <RenderBtn
+              setExpand={setExpand}
+              expand={expand}
+              data={data}
+              prop={prop}
+            />
+          )}
+        </RenderLabel>
+      )}
     </CardArea>
   );
 };

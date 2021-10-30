@@ -17,7 +17,6 @@ export const CardArea = styled.div<ITreeOptions>`
 `;
 
 interface ICardCard {
-  cantDrop: boolean;
   isDragging: boolean;
 }
 export const RenderLabel = styled.div<ICardCard>`
@@ -50,6 +49,15 @@ export const RenderLabel = styled.div<ICardCard>`
       cursor: grabbing;
     `}
 `;
+
+export const RenderCarPersonal = styled.div`
+  position: relative;
+
+  &.mock_card {
+    border: 1px solid #7de874;
+  }
+`;
+
 export const StyledLabel = styled.div`
   margin: 0;
   padding: 0;
