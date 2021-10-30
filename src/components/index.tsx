@@ -24,7 +24,7 @@ export const TreeNode = (props: IOrgTreeNodeProps) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <RenderNode data={hierarchy} prop={props} first />
-      <RenderNode data={mock_data} prop={props} />
+      <RenderNode data={mock_data} prop={props} mock />
     </DndProvider>
   );
 };

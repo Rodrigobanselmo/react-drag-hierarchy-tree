@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 import {
   CSSProperties,
   Dispatch,
@@ -5,14 +7,19 @@ import {
   ReactNode,
   SetStateAction,
   ForwardedRef,
-} from "react";
+} from 'react';
 
-export interface INestedObject {
+export interface INestedObject extends Record<string, any> {
   id: string | number;
   label: string;
   children: INestedObject[];
   expand?: boolean;
   style?: CSSProperties;
+}
+
+interface IRenderButton {
+  onClick: (event: MouseEvent<any>) => void;
+  isCollapsed: boolean | undefined;
 }
 
 export interface IOrgTreeProps {
@@ -23,19 +30,26 @@ export interface IOrgTreeProps {
   renderContent?: (...data: any) => any;
   labelWidth?: number;
   labelClassName?: string;
+  strokeColor?: string;
+  buttonBackgroundColor?: string;
+  buttonBorderColor?: string;
+  strokeWidth?: '1px' | '2px' | '3px' | '4px' | '5px';
   onClick?: (...data: any) => any;
+  renderButton?: ({ onClick, isCollapsed }: IRenderButton) => JSX.Element;
+  renderCard?: ({ onClick, isCollapsed }: IRenderButton) => JSX.Element;
+  cardStyle?: CSSProperties;
 }
 
 export interface INodeTree {
-  label: "label";
-  expand: "expand";
-  children: "children";
+  label: 'label';
+  expand: 'expand';
+  children: 'children';
 }
 
 export interface IOrgTreeNodeProps
   extends Omit<
     IOrgTreeProps,
-    "onClick" | "data" | "setExpandAll" | "expandAll"
+    'onClick' | 'data' | 'setExpandAll' | 'expandAll'
   > {
   node: INodeTree;
   expandAll: boolean;
@@ -44,7 +58,7 @@ export interface IOrgTreeNodeProps
 }
 
 export interface IOptionalNestedObject
-  extends Omit<Partial<INestedObject>, "children"> {
+  extends Omit<Partial<INestedObject>, 'children'> {
   children: Partial<INestedObject>[];
 }
 
@@ -64,7 +78,7 @@ export interface IHierarchyContextData {
   editById: (
     id: number | string,
     data: Partial<INestedObject>,
-    action?: "replace" | "add" | "remove",
+    action?: 'replace' | 'add' | 'remove',
     nestedObject?: INestedObject
   ) => INestedObject;
   removeById: (
@@ -115,7 +129,7 @@ export type IRemoveById = (
 export type IEditById = (
   id: number | string,
   data: Partial<INestedObject>,
-  action?: "replace" | "add" | "remove",
+  action?: 'replace' | 'add' | 'remove',
   nestedObject?: INestedObject | undefined
 ) => INestedObject;
 

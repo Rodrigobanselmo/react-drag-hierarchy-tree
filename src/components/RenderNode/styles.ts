@@ -37,12 +37,14 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
 
   &:after {
     left: 50%;
-    border-left: 1px solid #000;
+    border-left: 1px solid
+      ${(prop) => (prop.strokeColor ? prop.strokeColor : '#000')};
   }
 
-  &:not(:first-child):before,
-  &:not(:last-child):after {
-    border-top: 1px solid #000;
+  &:not(:first-of-type):before,
+  &:not(:last-of-type):after {
+    border-top: 1px solid
+      ${(prop) => (prop.strokeColor ? prop.strokeColor : '#000')};
   }
 
   // remove the line of the first label
@@ -84,17 +86,18 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
 
       &:only-child:before {
         top: 1px;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid
+          ${props.strokeColor ? props.strokeColor : '#000'};
       }
 
-      &:not(:first-child):before,
-      &:not(:last-child):after {
+      &:not(:first-of-type):before,
+      &:not(:last-of-type):after {
         border-top: 0;
-        border-left: 1px solid #000;
+        border-left: 1px solid ${props.strokeColor ? props.strokeColor : '#000'};
       }
 
       &:not(:only-child):after {
-        border-top: 1px solid #000;
+        border-top: 1px solid ${props.strokeColor ? props.strokeColor : '#000'};
       }
 
       // remove the line of the first label
@@ -107,4 +110,12 @@ export const OrgTreeNode = styled.div<ITreeOptions>`
         }
       }
     `}
+
+  .RdtCant-drop {
+    opacity: 0.5;
+    cursor: no-drop;
+    .org-tree-node-label-inner {
+      background-color: #aaaaaa33;
+    }
+  }
 `;

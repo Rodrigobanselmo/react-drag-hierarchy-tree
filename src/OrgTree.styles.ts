@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 interface IHorizontal {
   horizontal: boolean;
@@ -14,7 +14,7 @@ export const OrgTree = styled.div<IHorizontal>`
 
   &:before,
   &:after {
-    content: "";
+    content: '';
     display: table;
   }
 

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { ITreeOptions } from '../interfaces';
 
-export const LabelArea = styled.div<ITreeOptions>`
+export const CardArea = styled.div<ITreeOptions>`
   position: relative;
   display: inline-block;
   cursor: move;
@@ -16,11 +16,11 @@ export const LabelArea = styled.div<ITreeOptions>`
     `}
 `;
 
-interface ILabelCard {
+interface ICardCard {
   cantDrop: boolean;
   isDragging: boolean;
 }
-export const LabelCard = styled.div<ILabelCard>`
+export const RenderLabel = styled.div<ICardCard>`
   background-color: white;
   cursor: grab;
   display: flex;
@@ -28,29 +28,29 @@ export const LabelCard = styled.div<ILabelCard>`
   justify-content: center;
   padding: 0 15px;
   min-width: 100px;
-  height: 45px;
+  min-height: 45px;
   z-index: 100000;
   text-align: center;
   color: black;
   position: relative;
-  border-radius: 3px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
 
   // no break line
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  ${(props) =>
-    props.cantDrop &&
-    css`
-      background-color: #aaaaaa33;
-      opacity: 0.5;
-      cursor: no-drop;
-    `}
+  &.mock_card {
+    border: 1px solid #7de874;
+  }
 
   ${(props) =>
     props.isDragging &&
     css`
       cursor: grabbing;
     `}
+`;
+export const StyledLabel = styled.div`
+  margin: 0;
+  padding: 0;
 `;

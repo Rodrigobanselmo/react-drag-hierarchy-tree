@@ -25,7 +25,8 @@ export const ChildrenComponent = styled.div<ITreeOptions>`
     left: 50%;
     width: 0;
     height: 20px;
-    border-left: 1px solid #000;
+    border-right: ${(prop) => (prop.strokeWidth ? prop.strokeWidth : '1px')}
+      solid ${(prop) => (prop.strokeColor ? prop.strokeColor : '#000')};
   }
 
   &:after {
@@ -42,12 +43,13 @@ export const ChildrenComponent = styled.div<ITreeOptions>`
       padding-left: 20px;
 
       &:before {
-        top: 50%;
+        top: calc(50% + 1px);
         left: 0;
         width: 20px;
         height: 0;
         border-left: 0;
-        border-top: 1px solid #000;
+        border-top: ${props.strokeWidth ? props.strokeWidth : '1px'} solid
+          ${props.strokeColor ? props.strokeColor : '#000'};
       }
 
       &:after {
