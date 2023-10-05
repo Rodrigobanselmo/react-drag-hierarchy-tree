@@ -99,6 +99,7 @@ export const RenderCard = ({
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
+      canDrag: () => !!prop.canDrag,
     }),
     []
   );

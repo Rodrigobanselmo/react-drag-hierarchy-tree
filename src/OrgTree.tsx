@@ -21,6 +21,7 @@ export const OrgTreeComponent = forwardRef<any, IOrgTreeProps>(
       collapsable = true,
       expandAll = true,
       horizontal = false,
+      canDrag = true,
       ...props
     },
     ref
@@ -48,6 +49,7 @@ export const OrgTreeComponent = forwardRef<any, IOrgTreeProps>(
               collapsable={collapsable}
               expandAll={expandAllNodes}
               onClick={(e, nodeData) => onClick && onClick(e, nodeData)}
+              canDrag={canDrag}
               {...props}
             />
           </OrgTree>
