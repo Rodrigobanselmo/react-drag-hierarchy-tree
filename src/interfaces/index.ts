@@ -43,6 +43,7 @@ export interface IOrgTreeProps {
   renderButton?: ({ onClick, isCollapsed }: IRenderButton) => JSX.Element;
   renderCard?: ({ isDragging, label, data, isPreviewCard }: IRenderCard) => any;
   cardStyle?: CSSProperties;
+  canDrag?: boolean;
 }
 
 export interface INodeTree {
